@@ -55,8 +55,8 @@ export default function Hero() {
               <Image
                 src="/35years.png"
                 alt="35 Years Experience"
-                width={260}
-                height={80}
+                width={520}
+                height={160}
                 priority
                 className="w-[180px] md:w-[260px] h-auto"
               />
