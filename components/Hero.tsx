@@ -13,15 +13,7 @@ export default function Hero() {
         alt="Phakisa Signs"
         fill
         priority
-        className="
-object-contain
-object-center
-scale-90
-md:scale-100
-md:object-cover
-md:object-right
-transition-all
-"
+        className="object-cover object-right"
       />
 
       {/* Dark Overlay */}
