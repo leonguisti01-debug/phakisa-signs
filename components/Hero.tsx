@@ -50,9 +50,19 @@ export default function Hero() {
               </span>
             </h1>
 
-            <div className="mt-8 h-1 w-24 rounded-full bg-[#00C853]" />
+            {/* 35 Years Experience */}
+            <div className="mt-4 mb-6">
+              <Image
+                src="/35years.png"
+                alt="35 Years Experience"
+                width={260}
+                height={80}
+                priority
+                className="w-[180px] md:w-[260px] h-auto"
+              />
+            </div>
 
-            <p className="mt-8 max-w-xl text-lg leading-8 text-gray-200 md:text-xl">
+            <p className="max-w-xl text-lg leading-8 text-gray-200 md:text-xl">
               Premium printing, signage and shopfitting solutions
               designed to make your business impossible to ignore.
             </p>
