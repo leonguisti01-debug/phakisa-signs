@@ -20,7 +20,7 @@ export default function ContactCTA() {
         <div className="mt-10 flex flex-wrap justify-center gap-4">
 
           <a
-            href="tel:+270000000000"
+            href="tel:+27573556519"
             className="rounded-xl bg-[#00A651] px-8 py-4 font-bold transition hover:bg-[#009245]"
           >
             CALL US
