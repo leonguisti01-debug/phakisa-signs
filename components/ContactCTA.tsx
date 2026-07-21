@@ -27,7 +27,7 @@ export default function ContactCTA() {
           </a>
 
           <a
-            href="https://wa.me/27000000000"
+            href="https://wa.me/27763295806"
             target="_blank"
             className="rounded-xl border border-white px-8 py-4 font-bold transition hover:bg-white hover:text-black"
           >
