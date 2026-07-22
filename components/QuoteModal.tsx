@@ -65,7 +65,7 @@ export default function QuoteModal({ open, onClose }: Props) {
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 40, opacity: 0 }}
-            className="relative w-full max-w-2xl rounded-3xl bg-[#07131B] p-8 border border-white/10"
+            className="relative w-full max-w-2xl rounded-3xl border border-white/10 bg-[#07131B] p-8"
           >
             <button
               onClick={onClose}
@@ -79,13 +79,10 @@ export default function QuoteModal({ open, onClose }: Props) {
             </h2>
 
             <p className="mt-2 text-gray-400">
-              Tell us about your project and we'll get back to you shortly.
+              Tell us about your project and we&apos;ll get back to you shortly.
             </p>
 
-            <form
-              onSubmit={handleSubmit}
-              className="mt-8 grid gap-5"
-            >
+            <form onSubmit={handleSubmit} className="mt-8 grid gap-5">
               <input
                 required
                 placeholder="Full Name"
@@ -152,12 +149,12 @@ export default function QuoteModal({ open, onClose }: Props) {
                 onChange={(e) =>
                   setForm({ ...form, message: e.target.value })
                 }
-                className="rounded-xl bg-[#111C24] p-4 text-white outline-none resize-none"
+                className="resize-none rounded-xl bg-[#111C24] p-4 text-white outline-none"
               />
 
               <button
                 disabled={loading}
-                className="mt-2 rounded-xl bg-[#00A651] py-4 font-bold text-white hover:bg-[#00C853] transition"
+                className="mt-2 rounded-xl bg-[#00A651] py-4 font-bold text-white transition hover:bg-[#00C853]"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">

@@ -1,15 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Menu } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 left-0 z-50 w-full bg-[#08141B] shadow-lg border-b border-white/5">
+    <header className="fixed top-0 left-0 z-50 w-full border-b border-white/5 bg-[#08141B] shadow-lg">
       <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-8 lg:px-12">
 
         {/* Logo */}
-        <a href="/" className="flex items-center">
+        <Link href="/" className="flex items-center">
           <Image
             src="/logo.png"
             alt="Phakisa Signs"
@@ -18,7 +19,7 @@ export default function Navbar() {
             priority
             className="h-16 w-auto lg:h-20"
           />
-        </a>
+        </Link>
 
         {/* Burger Button */}
         <button
