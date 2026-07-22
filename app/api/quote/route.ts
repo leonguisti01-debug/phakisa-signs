@@ -14,16 +14,15 @@ export async function POST(req: Request) {
       message,
     } = await req.json();
 
-    await resend.emails.send({
-      from: "Phakisa Signs <quotes@phakisasigns.co.za>",
-      to: "info@phakisasigns.co.za",
+    // Send quote to Phakisa Signs
+    const adminResult = await resend.emails.send({
+      from: "Phakisa Signs <info@phakisasigns.co.za>",
+      to: ["info@phakisasigns.co.za"],
       replyTo: email,
       subject: `New Quote Request - ${service}`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:700px;margin:auto">
-          <h2 style="color:#00A651">
-            New Quote Request
-          </h2>
+          <h2 style="color:#00A651;">New Quote Request</h2>
 
           <table cellpadding="8" cellspacing="0" style="width:100%;border-collapse:collapse">
             <tr>
@@ -43,7 +42,7 @@ export async function POST(req: Request) {
 
             <tr>
               <td><strong>Phone</strong></td>
-              <td>${phone}</td>
+              <td>${phone || "-"}</td>
             </tr>
 
             <tr>
@@ -54,7 +53,7 @@ export async function POST(req: Request) {
 
           <h3>Project Details</h3>
 
-          <p style="white-space:pre-wrap">
+          <p style="white-space:pre-wrap;">
             ${message}
           </p>
 
@@ -64,25 +63,39 @@ export async function POST(req: Request) {
             Submitted from
             <strong>phakisasigns.co.za</strong>
           </p>
-
         </div>
       `,
     });
 
-    await resend.emails.send({
-      from: "Phakisa Signs <quotes@phakisasigns.co.za>",
-      to: email,
+    console.log("ADMIN EMAIL RESULT:", adminResult);
+
+    if (adminResult.error) {
+      console.error("ADMIN EMAIL FAILED:", adminResult.error);
+
+      return NextResponse.json(
+        {
+          success: false,
+          error: adminResult.error,
+        },
+        {
+          status: 500,
+        }
+      );
+    }
+
+    // Send confirmation to customer
+    const customerResult = await resend.emails.send({
+      from: "Phakisa Signs <info@phakisasigns.co.za>",
+      to: [email],
       subject: "We've received your quote request",
       html: `
         <div style="font-family:Arial,sans-serif;max-width:700px;margin:auto">
-
-          <h2 style="color:#00A651">
+          <h2 style="color:#00A651;">
             Thank you for contacting Phakisa Signs
           </h2>
 
           <p>
-            We've received your quote request and one of our consultants will
-            contact you shortly.
+            We've received your quote request and one of our consultants will contact you shortly.
           </p>
 
           <p>
@@ -91,24 +104,28 @@ export async function POST(req: Request) {
 
           <br>
 
-          <strong>
-            Phakisa Signs
-          </strong>
-
+          <strong>Phakisa Signs</strong>
         </div>
       `,
     });
+
+    console.log("CUSTOMER EMAIL RESULT:", customerResult);
+
+    if (customerResult.error) {
+      console.error("CUSTOMER EMAIL FAILED:", customerResult.error);
+    }
 
     return NextResponse.json({
       success: true,
     });
 
   } catch (error) {
-    console.error(error);
+    console.error("QUOTE API ERROR:", error);
 
     return NextResponse.json(
       {
         success: false,
+        error: String(error),
       },
       {
         status: 500,
