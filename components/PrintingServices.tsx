@@ -35,12 +35,7 @@ const services = [
     title: "Large Format Printing",
     description: "Banners, wallpaper, canvas and more.",
   },
-  {
-    icon: Package,
-    title: "Packaging",
-    description: "Custom branded packaging and presentation boxes.",
-  },
-];
+  ];
 
 export default function PrintingServices() {
   return (
